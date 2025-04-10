@@ -1,0 +1,23 @@
+<div class="bg-white rounded-lg p-6 h-full">
+  <div class="mb-4">
+    <h2 class="text-xl font-semibold text-gray-800">Recent Transactions</h2>
+    <p class="text-sm text-gray-500">Latest transactions on the platform</p>
+  </div>
+  
+  <div class="space-y-4">
+    <div *ngFor="let transaction of transactions" class="flex items-center justify-between py-2">
+      <div class="flex items-center">
+        <div [class]="'w-8 h-8 rounded-full flex items-center justify-center text-white ' + (transaction.amount >= 0 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600')">
+          {{ getInitial(transaction.userName) }}
+        </div>
+        <div class="ml-3">
+          <p class="font-medium text-gray-800">{{ transaction.userName }}</p>
+          <p class="text-xs text-gray-500">{{ transaction.date }}</p>
+        </div>
+      </div>
+      <div [class]="getAmountClass(transaction.amount)">
+        {{ formatAmount(transaction.amount) }}
+      </div>
+    </div>
+  </div>
+</div>

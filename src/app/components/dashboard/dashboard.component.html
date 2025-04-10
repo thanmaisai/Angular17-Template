@@ -1,0 +1,135 @@
+<div class="dashboard-container p-6">
+  <h1 class="text-2xl font-bold mb-1">Dashboard</h1>
+  <p class="text-gray-500 mb-6">Overview of your platform statistics and performance.</p>
+  
+  <!-- Timeframe selector -->
+  <div class="flex gap-2 mb-6">
+    <button 
+      [ngClass]="{'bg-gray-200': selectedTimeframe === 'Daily', 'bg-white': selectedTimeframe !== 'Daily'}"
+      class="px-4 py-2 rounded-md text-sm font-medium" 
+      (click)="changeTimeframe('Daily')">Daily</button>
+    <button 
+      [ngClass]="{'bg-gray-200': selectedTimeframe === 'Weekly', 'bg-white': selectedTimeframe !== 'Weekly'}"
+      class="px-4 py-2 rounded-md text-sm font-medium" 
+      (click)="changeTimeframe('Weekly')">Weekly</button>
+    <button 
+      [ngClass]="{'bg-gray-200': selectedTimeframe === 'Monthly', 'bg-white': selectedTimeframe !== 'Monthly'}"
+      class="px-4 py-2 rounded-md text-sm font-medium" 
+      (click)="changeTimeframe('Monthly')">Monthly</button>
+  </div>
+  
+  <!-- Stats cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <!-- New Users Today -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-600">New Users Today</span>
+        <span class="text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+          </svg>
+        </span>
+      </div>
+      <div class="text-2xl font-bold">{{ newUsersToday }}</div>
+      <div class="text-sm text-green-500">{{ newUsersChange }} from yesterday</div>
+    </div>
+    
+    <!-- Total Users -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-600">Total Users</span>
+        <span class="text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+          </svg>
+        </span>
+      </div>
+      <div class="text-2xl font-bold">{{ totalUsers }}</div>
+      <div class="text-sm text-green-500">{{ totalUsersChange }} from last week</div>
+    </div>
+    
+    <!-- Transactions Today -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-600">Transactions Today</span>
+        <span class="text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </div>
+      <div class="text-2xl font-bold">{{ transactionsToday }}</div>
+      <div class="text-sm text-green-500">{{ transactionsChange }} from yesterday</div>
+    </div>
+    
+    <!-- Non-Users -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-600">Non-Users</span>
+        <span class="text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </div>
+      <div class="text-2xl font-bold">{{ nonUsers }}</div>
+      <div class="text-sm text-red-500">{{ nonUsersChange }} from yesterday</div>
+    </div>
+  </div>
+  
+  <!-- Charts and Recent Transactions -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Transaction Overview Chart -->
+    <div class="bg-white p-4 rounded-lg shadow-sm lg:col-span-2">
+      <h2 class="text-lg font-semibold mb-1">Transaction Overview</h2>
+      <p class="text-sm text-gray-500 mb-4">Transaction volume over time</p>
+      
+      <div class="chart-container h-64">
+        <!-- Simple bar chart representation -->
+        <div class="flex h-full items-end">
+          <div class="flex-1 flex flex-col justify-between h-full">
+            <div class="text-xs text-gray-400">R180000</div>
+            <div class="text-xs text-gray-400">R135000</div>
+            <div class="text-xs text-gray-400">R90000</div>
+            <div class="text-xs text-gray-400">R45000</div>
+            <div class="text-xs text-gray-400">R0</div>
+          </div>
+          <div class="flex-grow flex items-end justify-between">
+            <ng-container *ngFor="let value of chartValues; let i = index">
+              <div class="flex flex-col items-center">
+                <div 
+                  class="bg-black w-8" 
+                  [style.height.px]="(value / 180000) * 200">
+                </div>
+                <div class="text-xs text-gray-400 mt-2">{{ chartMonths[i] }}</div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Recent Transactions -->
+    <div class="bg-white p-4 rounded-lg shadow-sm">
+      <h2 class="text-lg font-semibold mb-1">Recent Transactions</h2>
+      <p class="text-sm text-gray-500 mb-4">Latest transactions on the platform</p>
+      
+      <div class="space-y-4">
+        <div *ngFor="let transaction of recentTransactions" class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+              {{ getInitial(transaction.userName) }}
+            </div>
+            <div>
+              <div class="font-medium">{{ transaction.userName }}</div>
+              <div class="text-xs text-gray-500">{{ transaction.date }}</div>
+            </div>
+          </div>
+          <div [ngClass]="getAmountClass(transaction.type)" class="font-medium">
+            {{ formatAmount(transaction.amount, transaction.type) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

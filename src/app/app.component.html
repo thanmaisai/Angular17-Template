@@ -1,3 +1,15 @@
-<div class="container">
-  <h1>Welcome to the Experience Studio!</h1>
+<div class="app-container">
+  <!-- Sidebar -->
+  <app-sidebar class="sidebar"></app-sidebar>
+  
+  <!-- Main content area -->
+  <div class="main-content">
+    <!-- Header -->
+    <app-header class="header"></app-header>
+    
+    <!-- Router outlet for page content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 0, 0%, 0%; /* #000000 */
+    --color-secondary: 0, 0%, 100%; /* #FFFFFF */
+    --color-accent: 220, 14%, 96%; /* #F3F4F6 */
+    --color-text-primary: 210, 15%, 15%; /* #111827 */
+    --color-text-secondary: 210, 7%, 50%; /* #6B7280 */
+    --color-positive: 160, 67%, 47%; /* #10B981 */
+    --color-negative: 0, 82%, 67%; /* #EF4444 */
+
+    --font-primary: 'Inter, sans-serif';
+
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    color: hsl(var(--color-text-primary));
+    background-color: hsl(var(--color-secondary));
+  }
+}

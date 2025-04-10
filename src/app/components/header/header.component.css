@@ -1,0 +1,19 @@
+.header-container {
+  @apply flex justify-between items-center py-4 px-6 bg-white border-b border-gray-200;
+}
+
+.header-title {
+  @apply text-lg font-medium text-gray-800;
+}
+
+.header-actions {
+  @apply flex items-center space-x-4;
+}
+
+.notification-btn, .profile-btn {
+  @apply p-1 rounded-full text-gray-600 hover:bg-gray-100 focus:outline-none;
+}
+
+.notification-btn svg, .profile-btn svg {
+  @apply h-6 w-6;
+}
