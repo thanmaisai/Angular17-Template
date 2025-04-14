@@ -1,6 +1,9 @@
-import { defineConfig } from 'tailwindcss';
-
-export default defineConfig({
+import type { Config } from 'tailwindcss'
+ 
+export default {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -20,6 +23,7 @@ export default defineConfig({
         medium: 'var(--spacing-medium)',
         large: 'var(--spacing-large)'
       }
-    }
-  }
-});
+    },
+  },
+  plugins: [],
+} satisfies Config
